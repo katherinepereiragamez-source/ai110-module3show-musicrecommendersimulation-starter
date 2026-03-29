@@ -43,6 +43,8 @@ No listening history or novelty signal. The system will keep recommending the sa
 Small, hand-crafted catalog. With only 20 songs, the genre and mood distribution is uneven. Some genres appear only once, so users with niche preferences may receive weak matches across the board regardless of energy or acousticness alignment.
 Equal weight assumed within features. target_energy is treated as a single scalar, but a user might care more about energy ceiling (never above 0.5) than proximity. The current linear penalty doesn't capture asymmetric preferences.
 
+<img width="1159" height="765" alt="image" src="https://github.com/user-attachments/assets/67dea959-04d8-46ca-9282-4e2a6c908222" />
+
 ---
 
 ## Getting Started
