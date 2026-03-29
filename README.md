@@ -29,6 +29,8 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+Real-world music recommendation systems (like Spotify's or Apple Music's) work by building a model of each listener's taste over time — tracking what they play, skip, repeat, and rate — then finding patterns across millions of users to surface songs that people with similar profiles tend to enjoy. They combine collaborative filtering (what do users like me enjoy?) with content-based filtering (what does this song sound like, and does that match my taste profile?). My version simplifies this to focus on what matters most at a small scale: matching a user's preferred genres, tempo range, and listening history against a catalog of songs to produce a ranked list of recommendations. Rather than modeling crowd behavior, this simulation prioritizes transparent, attribute-based matching — making it easy to understand exactly why a song was recommended.
+
 ---
 
 ## Getting Started
