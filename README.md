@@ -31,6 +31,18 @@ You can include a simple diagram or bullet list if helpful.
 
 Real-world music recommendation systems (like Spotify's or Apple Music's) work by building a model of each listener's taste over time — tracking what they play, skip, repeat, and rate — then finding patterns across millions of users to surface songs that people with similar profiles tend to enjoy. They combine collaborative filtering (what do users like me enjoy?) with content-based filtering (what does this song sound like, and does that match my taste profile?). My version simplifies this to focus on what matters most at a small scale: matching a user's preferred genres, tempo range, and listening history against a catalog of songs to produce a ranked list of recommendations. Rather than modeling crowd behavior, this simulation prioritizes transparent, attribute-based matching — making it easy to understand exactly why a song was recommended.
 
+Given a UserProfile and a catalog of Song objects, the system scores every song on four features and returns the top-k matches:
+StepFeatureWeightHow It's Measured1Genre match30%Binary — 1.0 if song.genre == user.favorite_genre, else 0.02Mood match25%Binary — 1.0 if song.mood == user.favorite_mood, else 0.03Energy proximity25%1.0 - abs(song.energy - user.target_energy) — continuous 0–1 penalty for distance from target4Acousticness fit20%song.acousticness if likes_acoustic=True; 1.0 - song.acousticness if False
+Final score = weighted sum of all four components (always in range 0.0–1.0).
+Songs are ranked by score descending; the top k are returned (default k=5).
+Potential Biases & Limitations
+
+Genre over-dominance. At 30%, genre is the single heaviest signal. A perfect-energy, perfect-mood song in a slightly different genre (e.g. indie pop vs. pop) will be pushed down the rankings even if it would genuinely suit the user. A more robust system would treat genre as a soft preference rather than a binary gate.
+Binary mood matching is too coarse. Moods exist on a spectrum — "chill" and "relaxed" are meaningfully similar, but the current scorer treats them as completely different. This can cause good songs to score poorly just because of label granularity.
+No listening history or novelty signal. The system will keep recommending the same top songs every run. A real recommender would deprioritize songs the user has already heard and inject occasional novel picks to encourage discovery.
+Small, hand-crafted catalog. With only 20 songs, the genre and mood distribution is uneven. Some genres appear only once, so users with niche preferences may receive weak matches across the board regardless of energy or acousticness alignment.
+Equal weight assumed within features. target_energy is treated as a single scalar, but a user might care more about energy ceiling (never above 0.5) than proximity. The current linear penalty doesn't capture asymmetric preferences.
+
 ---
 
 ## Getting Started
