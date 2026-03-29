@@ -225,3 +225,7 @@ A few sentences about what you learned:
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
 
+Personal Reflection
+
+This project taught me how to dive deep into all cases and edge cases. The AI was useful in brainstorming and handling the score algorithms. However, it was up to me to decide how certain songs were categorized. This project does come with a lot of bias, my analysis of songs may differ from someone elses. These are small details that neither the AI or myself can truly account for. I am not fully content with the visualization of my program. A future extension of this program would primarily be on the UI and not the backend.
+
